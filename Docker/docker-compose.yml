@@ -1,0 +1,39 @@
+version: "2"
+
+services:
+#  name-of-the-service:
+#    container_name: #name of the container
+#    image: #where to obtain the image of the container
+#    ports:
+#      - <host port>:<container port>- e.g. 5000:5000
+#    privileged: # true or false according to execute this container as privileged
+#    logging:
+#      options:
+#        max-size: '12m'
+#        max-file: '5'
+#      driver: json-file
+#    volumes:
+#      - <volume name>:<container folder>
+#    command: bash -c "[ -d './Docker' ] || git clone https://fpcasares:F4cund0pc2@github.com/fpcasares/Docker.git && bash ./Docker/entrypoint.sh" #this checks for the folder Docker and execute the entrypoint.sh bash script
+#    stdin_open: true # docker run -i
+#    tty: true        # docker run -t
+
+
+  gpio:
+    container_name: gpio
+    image: fpcasar/gpio:latest
+    ports:
+      - 5000:5000
+      - 5001:5001
+      - 5009:5009
+    privileged: true
+    logging:
+      options:
+        max-size: '12m'
+        max-file: '5'
+      driver: json-file
+    volumes:
+      - gpio_data:/data 
+    command: bash -c "[ -d './Docker' ] || git clone xxx.git && bash ./Docker/entrypoint.sh" #this checks for the folder Docker and execute the entrypoint.sh bash script
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
