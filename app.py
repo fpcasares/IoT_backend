@@ -15,7 +15,8 @@ app.secret_key = os.urandom(16)
 @app.route('/')
 def index():
     if 'username' in session:
-        return 'Logged in as %s' % escape(session['username'])
+        return 'Logged in as %s:%s' % escape(session['username'],session['password'])
+        
     else:
         return redirect(url_for('login'))
     return 'You are not logged in'
