@@ -12,7 +12,6 @@ app = Flask(__name__)
 # Set the secret key to some random bytes. Keep this really secret!
 app.secret_key = os.urandom(16)
 
-
 @app.route('/api/auth')
 def auth():
     json_data = request.get_json()
