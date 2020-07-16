@@ -1,4 +1,4 @@
-from flask import Flask, session, redirect, url_for, request
+from flask import Flask, session, redirect, url_for, request, request, jsonify
 from markupsafe import escape
 import os
 
@@ -12,33 +12,20 @@ app = Flask(__name__)
 # Set the secret key to some random bytes. Keep this really secret!
 app.secret_key = os.urandom(16)
 
-@app.route('/')
-def index():
-    if 'username' in session:
-        return 'Logged in as %s:%s' % escape(session['username'],session['password'])
-        
-    else:
-        return redirect(url_for('login'))
-    return 'You are not logged in'
 
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-        session['username'] = request.form['username']
-        return redirect(url_for('index'))
-    return '''
-        <form method="post">
-            <p><input type=text name=username>
-            <p><input type=password name=password>
-            <p><input type=submit value=Login>
-        </form>
-    '''
+@app.route('/api/auth')
+def auth():
+    json_data = request.get_json()
+    email = json_data['email']
+    password = json_data['password']
+    return jsonify(token=generate_token(email, password))
 
-@app.route('/logout')
-def logout():
-    # remove the username from the session if it's there
-    session.pop('username', None)
-    return redirect(url_for('index'))
+with app.test_client() as c:
+    rv = c.post('/api/auth', json={
+        'email': 'flask@example.com', 'password': 'secret'
+    })
+    json_data = rv.get_json()
+    assert verify_token(email, json_data['token'])
     
     
 if __name__ == '__main__':
