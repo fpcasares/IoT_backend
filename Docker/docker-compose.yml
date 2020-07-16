@@ -34,6 +34,6 @@ services:
       driver: json-file
     volumes:
       - gpio_data:/data 
-    command: bash -c "[ -d './Docker' ] || git clone xxx.git && bash ./Docker/entrypoint.sh" #this checks for the folder Docker and execute the entrypoint.sh bash script
+    command: bash -c "[ -d './Docker' ] || git clone https://github.com/fpcasares/IoT_backend.git && bash ./IoT_backend/Docker/entrypoint.sh" #this checks for the folder Docker and execute the entrypoint.sh bash script
     stdin_open: true # docker run -i
     tty: true        # docker run -t
