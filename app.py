@@ -15,7 +15,7 @@ app.secret_key = os.urandom(16)
 @app.route('/')
 def index():
     if 'username' in session:
-        return 'Logged in as %s:%s' % escape(session['username'],session['password'])
+        return 'Logged in as {}:{}'.format(escape(session['username']),escape(session['password']))
         
     else:
         return redirect(url_for('login'))
@@ -25,6 +25,7 @@ def index():
 def login():
     if request.method == 'POST':
         session['username'] = request.form['username']
+        session['password'] = request.form['password']
         return redirect(url_for('index'))
     return '''
         <form method="post">
