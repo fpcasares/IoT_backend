@@ -4,15 +4,15 @@ import os
 
 if os.system('ps -A | grep pigpiod')==0:
     GPIO=True
-    from GPIO.IR.IREMIT import *
+#    from GPIO.IR.IREMIT import *
 
 app = Flask(__name__)
 
 
 @app.route('/available_scripts', methods=['GET'])
 def login():
-    return get scripts()
-
+#    return get scripts()
+     return 'Hello World'
 
 
 if __name__ == '__main__':
