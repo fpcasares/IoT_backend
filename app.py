@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 @app.route('/available_scripts', methods=['GET'])
 def login():
-#    return get scripts()
+     os.system("find /GPIO -name *.py")
      return 'Hello World'
 
 
