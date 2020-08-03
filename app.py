@@ -1,4 +1,4 @@
-from flask import request,Flask
+from flask import request,Flask,jsonify
 import os
 
 
@@ -8,11 +8,15 @@ if os.system('ps -A | grep pigpiod')==0:
 
 app = Flask(__name__)
 
+@app.route('/api/v1', methods=['GET'])
+def home():
+     return('Main Page')
 
-@app.route('/available_scripts', methods=['GET'])
-def login():
-     os.system("find /GPIO -name *.py")
-     return 'Hello World'
+
+@app.route('/api/v1/available_scripts', methods=['GET'])
+def get_available_scripts():
+     script_list=glob.glob('/GPIO/**/*.py',recursive=True)
+     return jsonify(script_list)
 
 
 if __name__ == '__main__':
