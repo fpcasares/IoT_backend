@@ -9,7 +9,7 @@ if [ $status -ne 0 ]; then
 fi
 
 # Clone Necessary Repos if does not exists
-bash -c "[ -d './webserver' ] || git clone https://github.com/fpcasares/IoT_backend.git"
+bash -c "[ -d './IoT_backend' ] || git clone https://github.com/fpcasares/IoT_backend.git"
 bash -c "[ -d './GPIO' ] || git clone https://github.com/fpcasares/GPIO.git"
 
 
