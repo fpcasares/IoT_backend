@@ -12,8 +12,8 @@ fi
 alias ll='ls -l'
 
 # Clone Necessary Repos if does not exists
-bash -c "[ -d './IoT_backend' ] || git clone https://github.com/fpcasares/IoT_backend.git"
-bash -c "[ -d './GPIO' ] || git clone https://github.com/fpcasares/GPIO.git"
+bash -c "[ -d '/IoT_backend' ] || git clone https://github.com/fpcasares/IoT_backend.git"
+bash -c "[ -d '/GPIO' ] || git clone https://github.com/fpcasares/GPIO.git"
 
 # Install requirements for webserver
 pip install -r ./IoT_backend/requirements.txt
